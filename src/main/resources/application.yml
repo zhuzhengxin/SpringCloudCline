@@ -1,0 +1,39 @@
+eureka:
+    client:
+        serviceUrl:
+            defaultZone: http://localhost:8761/eureka/
+server:
+    port: 8763
+spring:
+    application:
+       name: service-cline
+    profiles:
+      active: dev
+    mvc:
+        view:
+         prefix : /WEB-INF/views/
+         suffix : .jsp
+    datasource:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/zz_zz?useUnicode=true&characterEncoding=utf8&useSSL=false
+      username: root
+      password: root
+      tomcat:
+        initialSize: 1
+        min-idle: 1
+        max-idle: 20
+        max-wait: 60000
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 30000
+        validationQuery: SELECT 1
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+mybatis:
+    mapper-locations: classpath:mapping/*.xml  #注意：一定要对应mapper映射xml文件的所在路径
+    type-aliases-package: com.cflwork.vo  # 注意：对应实体类的路径
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
